@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="UTF-8" />
+  <title>GenPass</title>
+  <link rel="stylesheet" href="index.css" />
+</head>
+
+<body>
+
+  <header>
+    <img src="img/logo.png" alt="logo" class="logo">
+    <h1>GenPass</h1>
+  </header>
+
+  <section>
+    <img src="img/go.png" alt="" class="btn_generer" onclick="generator()">
+    <div id="result">
+      <h3 id="result_gener" class="result_gener"></h3>
+      <img src="img/copy.png" alt="copy_img" class="copy_img" onclick="copy()">
+    </div>
+  </section>
+
+  <footer>
+    <p>Maquetté et développé par Romain. Tous droits réservés</p>
+  </footer>
+
+  <script>
+    const list_minu = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+    const list_maj = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+    const list_num = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9"];
+    const list_sigles = ["$", "#", "/", "?", "!", "*", "%"];
+    const nb_caractere = 16;
+
+    function get_data_randomize(list_result) {
+      var r_minu = Math.floor(Math.random() * list_minu.length);
+      var r_maj = Math.floor(Math.random() * list_maj.length);
+      var r_num = Math.floor(Math.random() * list_num.length);
+      var r_sigles = Math.floor(Math.random() * list_sigles.length);
+
+      var list_glob = [list_minu[r_minu], list_maj[r_maj], list_num[r_num], list_sigles[r_sigles]];
+
+      var r_glob = Math.floor(Math.random() * list_glob.length);
+
+      list_result.push(list_glob[r_glob]);
+    }
+
+    function generator() {
+      var list_result = [];
+      for (let i = 0; i < nb_caractere; i++) {
+        get_data_randomize(list_result);
+      }
+      var mot_de_passe = list_result.join('');
+
+      document.getElementById('result_gener').innerHTML = mot_de_passe;
+
+    }
+  </script>
+
+  <script>
+    function copy() {
+
+      var content = document.getElementById('result_gener');
+
+      var content_final = content.innerText;
+
+      navigator.clipboard.writeText(content_final);
+
+      alert("Copié ! \ud83d\udc4d");
+
+    }
+  </script>
+</body>
+
+</html>
