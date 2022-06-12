@@ -27,7 +27,7 @@
         {
           "name": "@electron-forge/maker-squirrel",
           "config": {
-            "name": "generator_password"
+            "name": "Installer"
           }
         },
         {
